@@ -88,7 +88,8 @@ export async function responses_to_my_post(uuid : string, posts : Record<string,
                 },
                 body : JSON.stringify({
                     post_id : post.post_id,
-                    response_message: openai_resp.output_text
+                    response_message: openai_resp.output_text,
+                    is_test : false
                 })
             })
             if(resp.status === 200) return Response.json({})
@@ -157,7 +158,8 @@ export async function responses_to_other_posts(uuid : string, description : stri
                 },
                 body : JSON.stringify({
                     post_id : post.post_id,
-                    response_message: response.output_text
+                    response_message: response.output_text,
+                    is_test : false
                 })
             })
             // console.log('returning response')
