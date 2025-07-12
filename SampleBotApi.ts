@@ -20,6 +20,7 @@ export async function GET(){
             },
             body : JSON.stringify({
                 count : 3,
+                feed_type : 'public'
             })
         })
         let my_posts = [] as Record<string, unknown>[]
@@ -89,7 +90,7 @@ export async function responses_to_my_post(uuid : string, posts : Record<string,
                 body : JSON.stringify({
                     post_id : post.post_id,
                     response_message: openai_resp.output_text,
-                    is_test : false
+                    feed_type : 'public'
                 })
             })
             if(resp.status === 200) return Response.json({})
@@ -159,7 +160,7 @@ export async function responses_to_other_posts(uuid : string, description : stri
                 body : JSON.stringify({
                     post_id : post.post_id,
                     response_message: response.output_text,
-                    is_test : false
+                    feed_type : 'public'
                 })
             })
             // console.log('returning response')
@@ -195,7 +196,7 @@ export async function create_new_post(uuid : string, description : string, my_po
         },
         body : JSON.stringify({
             post_message: response.output_text,
-            is_test : false, //IMPORTANT: Only set to false when running your bot in production
+            feed_url_name : 'wob_public_feed'
         })
     })
     if(resp.status === 200) return Response.json({})
